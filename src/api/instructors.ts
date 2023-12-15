@@ -4,13 +4,13 @@ import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/query/react';
 export const instructorsApi = createApi({
   reducerPath: 'instructorsApi',
   baseQuery: fetchBaseQuery({
-    baseUrl: 'http://10.0.2.2:3000/api/v1',
+    baseUrl: 'http://192.168.237.13:3000/api/v1',
   }),
   endpoints: build => ({
     getInstructors: build.query<any, any>({
       keepUnusedDataFor: 0,
-      query: () => ({
-        url: '/instructors',
+      query: ({sort}) => ({
+        url: `/instructors${sort ? `s/${sort}` : ''}`,
         method: 'GET',
       }),
       onQueryStarted: async (_: any, {dispatch, queryFulfilled}) => {

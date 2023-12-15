@@ -4,13 +4,13 @@ import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/query/react';
 export const classesApi = createApi({
   reducerPath: 'classesApi',
   baseQuery: fetchBaseQuery({
-    baseUrl: 'http://10.0.2.2:3000/api/v1',
+    baseUrl: 'http://192.168.237.13:3000/api/v1',
   }),
   endpoints: build => ({
     getIndividualClasses: build.query<any, any>({
-      keepUnusedDataFor: 0,
-      query: () => ({
-        url: '/classes&type=individual',
+      keepUnusedDataFor: 0.0001,
+      query: ({sort}) => ({
+        url: `/classes&type=individual${sort ? `s/${sort}` : ''}`,
         method: 'GET',
       }),
       onQueryStarted: async (_: any, {dispatch, queryFulfilled}) => {
@@ -23,9 +23,9 @@ export const classesApi = createApi({
       },
     }),
     getGroupClasses: build.query<any, any>({
-      keepUnusedDataFor: 0,
-      query: () => ({
-        url: '/classes&type=group',
+      keepUnusedDataFor: 0.0001,
+      query: ({sort}) => ({
+        url: `/classes&type=group${sort ? `s/${sort}` : ''}`,
         method: 'GET',
       }),
       onQueryStarted: async (_: any, {dispatch, queryFulfilled}) => {
@@ -38,7 +38,7 @@ export const classesApi = createApi({
       },
     }),
     getClass: build.query<any, any>({
-      keepUnusedDataFor: 0,
+      keepUnusedDataFor: 0.0001,
       query: id => ({
         url: `/classes/${id}`,
         method: 'GET',

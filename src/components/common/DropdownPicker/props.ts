@@ -4,7 +4,7 @@ export type Props = {
   value: string;
   values: any[];
   selectValue: (...args: any) => any;
-  error:
+  error?:
     | string
     | string[]
     | FormikErrors<any>

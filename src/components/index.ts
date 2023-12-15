@@ -5,6 +5,7 @@ export * from './common/AddTypeInput';
 export * from './common/DatePickerInput';
 export * from './common/DropdownPicker';
 export * from './common/FAB';
+export * from './common/FilterMenu';
 export * from './common/Header';
 export * from './common/ScreenContainer';
 export * from './common/TimePicker';

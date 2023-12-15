@@ -47,13 +47,16 @@ export const DropdownPicker = ({
             />
           </TouchableRipple>
         }>
-        {values.map(item => (
-          <Menu.Item
-            key={item}
-            onPress={() => handleSelectValue(item)}
-            title={item}
-          />
-        ))}
+        {values.map(item => {
+          const isObject = typeof item === 'object';
+          return (
+            <Menu.Item
+              key={isObject ? item.title : item}
+              onPress={() => handleSelectValue(item)}
+              title={isObject ? item.title : item}
+            />
+          );
+        })}
       </Menu>
 
       {error && (

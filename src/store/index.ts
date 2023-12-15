@@ -23,6 +23,7 @@ import {instructorsReducer} from './slices/instructorsSlice';
 const persistConfig = {
   key: 'root',
   storage: AsyncStorage,
+  whitelist: [Slices.user],
 };
 
 const userPersistConfig = {
