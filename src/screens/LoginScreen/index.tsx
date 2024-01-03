@@ -1,21 +1,27 @@
 import {useLoginMutation} from '@/api';
 import {Header, ScreenContainer, Typography} from '@/components';
 import {LoginForm} from '@/forms';
-import React, {useState} from 'react';
-import {ScrollView, View} from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {Alert, ScrollView, View} from 'react-native';
 import {useTheme} from 'react-native-paper';
 import {styles} from './styles';
 
 export const LoginScreen = () => {
   const {colors} = useTheme();
 
-  const [login, {isLoading}] = useLoginMutation({});
+  const [login, {isLoading, isError}] = useLoginMutation({});
   const [loading, setLoading] = useState(false);
 
   const initialValues = {
     email: '',
     password: '',
   };
+
+  useEffect(() => {
+    if (isError) {
+      Alert.alert('Ошибка', 'Неверные логин и/или пароль');
+    }
+  }, [isError]);
 
   const onSubmit = async (values: any) => {
     try {
